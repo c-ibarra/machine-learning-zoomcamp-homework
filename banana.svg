@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <!-- Background subtle radial gradient -->
+    <radialGradient id="bg-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF9E6" />
+      <stop offset="100%" stop-color="#FFF0B3" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Main banana yellow gradient -->
+    <linearGradient id="banana-body" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE033" />
+      <stop offset="50%" stop-color="#FFD000" />
+      <stop offset="100%" stop-color="#F5B800" />
+    </linearGradient>
+
+    <!-- Highlight gradient -->
+    <linearGradient id="banana-highlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF5A0" stop-opacity="0.9" />
+      <stop offset="80%" stop-color="#FFE54C" stop-opacity="0.1" />
+    </linearGradient>
+
+    <!-- Shadow gradient -->
+    <linearGradient id="banana-shade" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C98A00" />
+      <stop offset="70%" stop-color="#E5A500" />
+      <stop offset="100%" stop-color="#FFD000" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Stem gradient -->
+    <linearGradient id="stem-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5D4037" />
+      <stop offset="30%" stop-color="#7CB342" />
+      <stop offset="70%" stop-color="#8BC34A" />
+      <stop offset="100%" stop-color="#FBC02D" />
+    </linearGradient>
+
+    <!-- Tip gradient -->
+    <linearGradient id="tip-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5B800" />
+      <stop offset="60%" stop-color="#5D4037" />
+      <stop offset="100%" stop-color="#3E2723" />
+    </linearGradient>
+
+    <!-- Drop shadow filter for realism -->
+    <filter id="drop-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="12" />
+      <feOffset dx="0" dy="25" />
+      <feComponentTransfer><feFuncA type="linear" slope="0.2" /></feComponentTransfer>
+      <feMerge>
+        <feMergeNode />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="blur-soft">
+      <feGaussianBlur stdDeviation="4" />
+    </filter>
+  </defs>
+
+  <!-- Background circle/glow -->
+  <ellipse cx="400" cy="320" rx="280" ry="180" fill="url(#bg-glow)" />
+
+  <!-- Cast shadow under the banana -->
+  <ellipse cx="400" cy="440" rx="220" ry="26" fill="#5A4010" opacity="0.22" filter="url(#blur-soft)" />
+  <ellipse cx="390" cy="442" rx="160" ry="16" fill="#3D2B0B" opacity="0.28" filter="url(#blur-soft)" />
+
+  <g filter="url(#drop-shadow)">
+    <!-- Main Banana Body -->
+    <path d="M 180 200 
+             C 210 230, 240 370, 370 410 
+             C 490 445, 590 375, 630 260 
+             C 610 320, 520 400, 390 380 
+             C 280 360, 210 280, 180 200 Z" 
+          fill="url(#banana-shade)" />
+
+    <path d="M 175 195 
+             C 220 250, 270 410, 420 415 
+             C 530 420, 610 340, 635 255 
+             C 605 350, 490 395, 380 375 
+             C 250 350, 195 240, 175 195 Z" 
+          fill="url(#banana-body)" />
+
+    <!-- Upper curved facet/body -->
+    <path d="M 175 195 
+             C 240 230, 330 260, 470 240 
+             C 550 228, 605 235, 635 255 
+             C 590 330, 480 370, 370 355 
+             C 255 338, 200 255, 175 195 Z" 
+          fill="url(#banana-body)" />
+
+    <!-- Top facet with bright highlight -->
+    <path d="M 175 195 
+             C 250 220, 360 235, 480 215 
+             C 560 202, 608 220, 635 255 
+             C 580 240, 510 235, 430 245 
+             C 320 260, 230 230, 175 195 Z" 
+          fill="url(#banana-highlight)" />
+
+    <!-- Longitudinal ridge line (characteristic banana segment line) -->
+    <path d="M 175 195 
+             C 250 270, 330 345, 470 335 
+             C 545 330, 600 285, 635 255" 
+          fill="none" stroke="#D49B00" stroke-width="3.5" stroke-linecap="round" opacity="0.75" />
+
+    <!-- Secondary highlight strip on ridge -->
+    <path d="M 205 220 
+             C 280 285, 350 335, 460 325 
+             C 530 318, 575 285, 605 260" 
+          fill="none" stroke="#FFF8B3" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
+
+    <!-- Banana Stem (curved green-brown stalk) -->
+    <path d="M 175 195 
+             C 165 180, 150 165, 135 155 
+             C 130 152, 125 157, 128 163 
+             C 134 175, 142 195, 160 210 
+             C 170 218, 178 208, 175 195 Z" 
+          fill="url(#stem-grad)" stroke="#4E342E" stroke-width="1.5" />
+
+    <!-- Stem cut end cap -->
+    <ellipse cx="132" cy="158" rx="7" ry="4" fill="#3E2723" transform="rotate(-35 132 158)" />
+
+    <!-- Bottom Tip (black/brown flower residue point) -->
+    <path d="M 632 252 
+             C 638 255, 648 260, 652 265 
+             C 650 269, 642 270, 635 267 
+             C 630 264, 628 258, 632 252 Z" 
+          fill="url(#tip-grad)" />
+
+    <!-- Small natural spots/freckles for organic look -->
+    <ellipse cx="320" cy="305" rx="2.5" ry="1.5" fill="#795548" opacity="0.6" transform="rotate(15 320 305)" />
+    <ellipse cx="350" cy="345" rx="3" ry="2" fill="#795548" opacity="0.5" transform="rotate(-20 350 345)" />
+    <ellipse cx="480" cy="310" rx="2" ry="1.5" fill="#795548" opacity="0.55" />
+    <ellipse cx="540" cy="280" rx="3.5" ry="2" fill="#795548" opacity="0.6" transform="rotate(25 540 280)" />
+    <ellipse cx="250" cy="250" rx="2" ry="1" fill="#795548" opacity="0.4" />
+    <ellipse cx="420" cy="280" rx="2" ry="1" fill="#795548" opacity="0.4" />
+  </g>
+</svg>

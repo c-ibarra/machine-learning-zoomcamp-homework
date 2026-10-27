@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800" width="100%" height="100%">
+  <defs>
+    <!-- Dark tech / medical backdrop gradient -->
+    <radialGradient id="bg-radial" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#111936" />
+      <stop offset="50%" stop-color="#0A0E1A" />
+      <stop offset="100%" stop-color="#030509" />
+    </radialGradient>
+
+    <!-- Brain glow -->
+    <radialGradient id="neural-glow" cx="48%" cy="42%" r="45%">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.35" />
+      <stop offset="50%" stop-color="#7C4DFF" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Hemisphere Base Gradient -->
+    <linearGradient id="brain-base" x1="20%" y1="10%" x2="80%" y2="90%">
+      <stop offset="0%" stop-color="#FF80AB" />
+      <stop offset="30%" stop-color="#EA4C89" />
+      <stop offset="70%" stop-color="#7928CA" />
+      <stop offset="100%" stop-color="#2A0845" />
+    </linearGradient>
+
+    <!-- Cerebellum Gradient -->
+    <linearGradient id="cerebellum-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E040FB" />
+      <stop offset="100%" stop-color="#4A148C" />
+    </linearGradient>
+
+    <!-- Brain Stem Gradient -->
+    <linearGradient id="stem-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7C4DFF" />
+      <stop offset="100%" stop-color="#1A237E" />
+    </linearGradient>
+
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="strong-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="800" fill="url(#bg-radial)" />
+  <circle cx="490" cy="370" r="340" fill="url(#neural-glow)" />
+
+  <!-- Neural Network Constellation / Grid background nodes -->
+  <g stroke="#00E5FF" stroke-opacity="0.15" stroke-width="1">
+    <line x1="200" y1="200" x2="280" y2="140" />
+    <line x1="280" y1="140" x2="400" y2="110" />
+    <line x1="400" y1="110" x2="560" y2="120" />
+    <line x1="560" y1="120" x2="700" y2="180" />
+    <line x1="700" y1="180" x2="780" y2="270" />
+    <line x1="780" y1="270" x2="790" y2="410" />
+    <line x1="790" y1="410" x2="710" y2="520" />
+    <line x1="510" y1="660" x2="520" y2="750" />
+  </g>
+
+  <!-- Group Brain Artwork -->
+  <g transform="translate(50, 20)">
+
+    <!-- Brain Stem (Tronco encefálico) -->
+    <path d="M 460 480 
+             C 475 540, 480 620, 485 700 
+             C 495 702, 545 700, 555 695 
+             C 545 610, 530 530, 515 475 Z" 
+          fill="url(#stem-grad)" stroke="#9FA8DA" stroke-width="1.5" opacity="0.9" />
+
+    <!-- Cerebellum (Cerebelo) -->
+    <path d="M 505 460 
+             C 540 460, 640 470, 675 520 
+             C 695 550, 680 600, 630 615 
+             C 575 630, 510 590, 490 530 
+             C 485 500, 490 470, 505 460 Z" 
+          fill="url(#cerebellum-grad)" stroke="#E1BEE7" stroke-width="2" />
+
+    <!-- Cerebellum Folia (Internal ridges) -->
+    <path d="M 515 490 C 560 495, 620 505, 650 535" fill="none" stroke="#FF80AB" stroke-width="2" stroke-dasharray="3,3" />
+    <path d="M 510 520 C 550 525, 610 540, 640 570" fill="none" stroke="#FF80AB" stroke-width="2" stroke-dasharray="3,3" />
+    <path d="M 505 550 C 535 560, 580 575, 610 600" fill="none" stroke="#FF80AB" stroke-width="2" stroke-dasharray="3,3" />
+
+    <!-- Main Cerebrum Silhouette / Base (Cerebro) -->
+    <path d="M 260 440 
+             C 210 390, 190 300, 240 220 
+             C 280 150, 370 100, 490 100 
+             C 610 100, 720 145, 760 230 
+             C 790 290, 780 370, 730 430 
+             C 690 480, 620 490, 530 465 
+             C 480 450, 460 470, 410 475 
+             C 340 480, 290 470, 260 440 Z" 
+          fill="url(#brain-base)" filter="url(#glow)" opacity="0.95" />
+
+    <!-- Frontal, Parietal, Occipital, Temporal Gyri / Convolutions (Circunvoluciones anatómicas) -->
+    <!-- Frontal Lobe Convolutions -->
+    <g fill="none" stroke="#FFD1DC" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+      <path d="M 270 320 C 290 300, 330 305, 335 340 C 340 370, 300 390, 320 420" />
+      <path d="M 235 250 C 270 230, 310 250, 320 280 C 330 310, 380 310, 390 270 C 395 240, 350 200, 380 170" />
+      <path d="M 310 170 C 340 140, 400 150, 415 190 C 425 220, 465 210, 475 170" />
+      <path d="M 255 365 C 275 375, 285 415, 275 435" />
+
+      <!-- Parietal & Central Sulcus area -->
+      <path d="M 420 120 C 445 150, 450 200, 480 230 C 510 260, 500 310, 545 325" stroke="#80D8FF" stroke-width="4" />
+      <path d="M 490 115 C 520 140, 530 190, 565 200 C 600 210, 610 260, 635 270" stroke="#80D8FF" stroke-width="3" />
+      <path d="M 440 250 C 470 260, 485 295, 465 330 C 445 360, 470 400, 510 405" />
+
+      <!-- Occipital Lobe Convolutions -->
+      <path d="M 610 130 C 660 140, 715 180, 725 230 C 735 270, 695 300, 720 340 C 740 370, 720 420, 675 440" stroke="#B388FF" stroke-width="3.5" />
+      <path d="M 650 195 C 670 220, 705 230, 680 270 C 660 300, 685 335, 650 365" />
+      <path d="M 575 145 C 610 165, 615 210, 645 235" stroke="#B388FF" />
+
+      <!-- Temporal Lobe Convolutions -->
+      <path d="M 350 435 C 375 425, 400 450, 435 445 C 470 440, 495 410, 530 425 C 570 440, 615 420, 640 445" stroke="#EA80FC" stroke-width="3.5" />
+      <path d="M 360 380 C 390 370, 430 385, 460 365 C 490 345, 530 365, 560 355 C 600 340, 630 375, 665 385" stroke="#EA80FC" stroke-width="3" />
+      <path d="M 380 325 C 410 320, 435 345, 470 330" />
+      <path d="M 535 290 C 565 295, 580 325, 615 315" />
+    </g>
+
+    <!-- Glowing Synaptic / Neural Nodes (Puntos de conexión sináptica brillantes) -->
+    <g filter="url(#strong-glow)">
+      <circle cx="320" cy="280" r="5" fill="#00E5FF" />
+      <circle cx="415" cy="190" r="4.5" fill="#00E5FF" />
+      <circle cx="480" cy="230" r="6" fill="#FFFFFF" />
+      <circle cx="545" cy="325" r="5.5" fill="#00E5FF" />
+      <circle cx="635" cy="270" r="5" fill="#FF4081" />
+      <circle cx="680" cy="270" r="4.5" fill="#00E5FF" />
+      <circle cx="720" cy="340" r="5" fill="#E040FB" />
+      <circle cx="460" cy="365" r="5.5" fill="#00E5FF" />
+      <circle cx="350" cy="340" r="4" fill="#FF4081" />
+      <circle cx="560" cy="355" r="5" fill="#FFFFFF" />
+      <circle cx="640" cy="445" r="4.5" fill="#00E5FF" />
+      <circle cx="510" cy="405" r="5" fill="#00E5FF" />
+      <circle cx="240" cy="220" r="4" fill="#FF4081" />
+      <circle cx="725" cy="230" r="4.5" fill="#00E5FF" />
+    </g>
+
+    <!-- Synapse impulse pulses -->
+    <line x1="320" y1="280" x2="415" y2="190" stroke="#00E5FF" stroke-width="1.5" stroke-dasharray="4,6" opacity="0.8" />
+    <line x1="415" y1="190" x2="480" y2="230" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="6,4" opacity="0.9" />
+    <line x1="480" y1="230" x2="545" y2="325" stroke="#00E5FF" stroke-width="2" opacity="0.85" />
+    <line x1="545" y1="325" x2="635" y2="270" stroke="#FF4081" stroke-width="1.5" stroke-dasharray="5,5" opacity="0.8" />
+    <line x1="635" y1="270" x2="680" y2="270" stroke="#00E5FF" stroke-width="1.5" opacity="0.7" />
+    <line x1="545" y1="325" x2="560" y2="355" stroke="#FFFFFF" stroke-width="1.8" opacity="0.8" />
+    <line x1="460" y1="365" x2="510" y2="405" stroke="#00E5FF" stroke-width="1.5" opacity="0.75" />
+    <line x1="350" y1="340" x2="460" y2="365" stroke="#FF4081" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.7" />
+
+  </g>
+
+  <!-- Title / Label watermark -->
+  <text x="500" y="760" text-anchor="middle" fill="#80D8FF" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="600" letter-spacing="6" opacity="0.75">NEURAL ARCHITECTURE • HUMAN BRAIN</text>
+</svg>
