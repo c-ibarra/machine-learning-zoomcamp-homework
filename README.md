@@ -4,13 +4,13 @@
 
 **Carlos Ibarra ([c-ibarra](https://github.com/c-ibarra)) · Applied machine learning, model evaluation, and containerized inference**
 
-A portfolio of coursework covering data exploration, regression, classification, and model serving. The repository connects statistical reasoning with executable Python: inspecting missing data, comparing models on reproducible splits, evaluating decision thresholds, and running a lead-conversion API in Docker.
+A portfolio of coursework covering data exploration, regression, classification, tree-based ensembles, and model serving. The repository connects statistical reasoning with executable Python: inspecting missing data, comparing models on reproducible splits, evaluating decision thresholds, and running a lead-conversion API in Docker.
 
 Two datasets anchor the work: car fuel efficiency for regression and course lead conversion for classification. The notebooks include explanations, visualizations, and saved results alongside the calculations.
 
 ## Course progress
 
-**As of 27 October 2026: 5 of 9 homeworks have local completion evidence; 4 remain pending in this repository.** Dates and module numbering follow the [2026 cohort syllabus](https://github.com/DataTalksClub/machine-learning-zoomcamp/blob/main/cohorts/2026/README.md). Deadlines are at **23:00 UTC** (**20:00 in Uruguay**).
+**As of 2 November 2026: 6 of 9 homeworks have local completion evidence; 3 remain pending in this repository.** Dates and module numbering follow the [2026 cohort syllabus](https://github.com/DataTalksClub/machine-learning-zoomcamp/blob/main/cohorts/2026/README.md). Deadlines are at **23:00 UTC** (**20:00 in Uruguay**).
 
 “Completed locally” describes the work available here and the deployment checks performed. **Official submission and grading on the course platform have not been confirmed.** This table does not mark local work as officially submitted.
 
@@ -21,7 +21,7 @@ Two datasets anchor the work: car fuel efficiency for regression and course lead
 | 03 | Machine Learning for Classification | Completed locally | [Notebook](homework_03.ipynb): feature analysis, logistic regression, and regularization. | 5 Oct 2026 |
 | 04 | Evaluation Metrics for Classification | Completed locally | [Notebook](homework_04.ipynb): assignment answers, threshold analysis, and cross-validation. | 12 Oct 2026 |
 | 05 | Deploying Machine Learning Models | Verified locally | [Deployment files](05-deployment/): direct inference, API requests, Docker build, and container health/inference checks. | 19 Oct 2026 |
-| 06 | Decision Trees and Ensemble Learning | Pending | Implement the homework; no solution files found in this repository. | 26 Oct 2026 |
+| 06 | Decision Trees and Ensemble Learning | Completed locally | [Notebook](homework_06.ipynb), [submission guide](docs/homework_06_submission.md), and [Q3 reference evidence](evidence/homework_06/reference_replay.md). Official submission remains unconfirmed. | 26 Oct 2026 |
 | 08 | Neural Networks and Deep Learning | Pending | Implement the homework; no solution files found in this repository. | 23 Nov 2026 |
 | 09 | Serverless Deep Learning | Pending | Implement the homework; no solution files found in this repository. | 30 Nov 2026 |
 | 10 | Kubernetes and TensorFlow Serving | Pending | Implement the homework; no solution files found in this repository. | 7 Dec 2026 |
@@ -45,6 +45,7 @@ The [cohort requirements](https://github.com/DataTalksClub/machine-learning-zoom
 | Review goal | Recommended entry point | What to inspect |
 | --- | --- | --- |
 | Understand modeling decisions | [Model evaluation notebook](homework_04.ipynb) | ROC AUC, precision–recall tradeoffs, threshold selection, and five-fold cross-validation. |
+| Review tree ensembles and Homework 6 delivery | [Homework 6 submission guide](docs/homework_06_submission.md) | Six answers with computed evidence, environment differences, reproduction steps, and delivery checklist. |
 | Inspect ML fundamentals | [Regression notebook](homework_02.ipynb) | NumPy implementations of linear and Ridge regression, imputation comparisons, and held-out evaluation. |
 | Review the serving workflow | [Prediction API](05-deployment/predict.py) and [Dockerfile](05-deployment/Dockerfile) | Typed inputs, preprocessing, artifact loading, health checks, and a reproducible container build. |
 
@@ -55,11 +56,12 @@ The [cohort requirements](https://github.com/DataTalksClub/machine-learning-zoom
 | Data preparation | Missing-value audits, categorical exploration, correlations, and comparisons of imputation strategies. |
 | Regression | Analytical linear and Ridge regression with NumPy; RMSE comparisons and sensitivity to random splits. |
 | Classification | `DictVectorizer`, logistic regression, mutual information, feature elimination, and regularization search. |
+| Tree-based models | Decision tree, random forest, and XGBoost regressors; validation RMSE across tree counts and depths; impurity-based feature importance; and an XGBoost learning-rate comparison. |
 | Evaluation | Train/validation/test separation; vectorizers fitted within training partitions and individual CV folds; accuracy, ROC AUC, precision, recall, and F1. |
 | Model serving | FastAPI endpoints returning conversion probabilities and decisions, with SHA-256 checksums for the model and preprocessing defaults. |
 | Reproducibility | Committed `uv.lock` files, prescribed seeds, bundled cohort datasets, and container base images pinned by digest. |
 
-**Stack:** Python, NumPy, pandas, matplotlib, seaborn, scikit-learn, Jupyter notebooks, uv, FastAPI, Uvicorn, and Docker.
+**Stack:** Python, NumPy, pandas, matplotlib, seaborn, scikit-learn, XGBoost, Jupyter notebooks, uv, FastAPI, Uvicorn, and Docker.
 
 ## Selected results
 
@@ -70,8 +72,18 @@ These values are recorded in the notebooks. Each metric is tied to its evaluatio
 | Fuel-efficiency regression | **2.236 RMSE** | Homework 2 final test split, after fitting on combined training and validation data. |
 | Lead-conversion baseline, `C=1` | **0.732 ROC AUC** | Homework 4 validation split: 1,000 observations. |
 | Lead-conversion regularization search, selected `C=0.001` | **0.749 mean ROC AUC**, **0.010 fold standard deviation** | Homework 4 five-fold CV on 4,000 full-training observations; final test evaluation is pending. |
+| Fuel-efficiency random forest, 10 trees | **1.839 RMSE** | Homework 6 validation split: 2,000 observations. |
+| Fuel-efficiency XGBoost, `eta=0.1`, 100 rounds | **1.725 RMSE** | Homework 6 validation split: 2,000 observations; `eta=0.3` gives 1.826 at round 100. |
 
 The evaluation notebook also shows why threshold choice matters. For its baseline model, threshold `0.41` gives validation F1 `0.758`, precision `0.619`, and recall `0.976`. These are baseline validation results; the deployed reference API uses its own model and a fixed `0.5` decision threshold.
+
+The Homework 6 results are validation scores obtained with that homework's prescribed preparation (missing values filled with zeros and seed-1 splits), so they are not directly comparable with the Homework 2 test RMSE. The Homework 6 test split was transformed with the training-fitted vectorizer but was not evaluated or used for model selection.
+
+### Homework 6 delivery
+
+The [submission guide](docs/homework_06_submission.md) contains the final answer table, reproducibility details, and remaining delivery steps. All 12 notebook code cells ran in order from a fresh kernel without errors on 2 November 2026. The selected Q3 answer (`150`) uses the documented [archived reference-environment run](evidence/homework_06/reference_replay.md); the current environment ties 100 and 150 trees at three decimals.
+
+A [Learning in Public draft](docs/homework_06_learning_in_public.md) is ready for review. Repository publication, the course submission receipt, the public-post URL, and grading remain unconfirmed; the guide includes a place to record them.
 
 ## Repository map
 
@@ -81,6 +93,10 @@ The evaluation notebook also shows why threshold choice matters. For its baselin
 | [homework_02.ipynb](homework_02.ipynb) | Regression, regularization, split stability, and test RMSE. |
 | [homework_03.ipynb](homework_03.ipynb) | Classification, feature analysis, and validation accuracy. |
 | [homework_04.ipynb](homework_04.ipynb) | Evaluation metrics, threshold curves, cross-validation, and a results dashboard. |
+| [homework_06.ipynb](homework_06.ipynb) | Decision tree, random forest tuning, impurity-based feature importance, XGBoost learning-rate comparison, and a results dashboard. |
+| [Homework 6 submission guide](docs/homework_06_submission.md) | Final answers, evidence, reproduction instructions, delivery checklist, and submission record. |
+| [Homework 6 public-post draft](docs/homework_06_learning_in_public.md) | English Learning in Public draft with publication instructions. |
+| [Homework 6 reference evidence](evidence/homework_06/reference_replay.md) | Archived Q3 output and a companion script for isolated reproduction. |
 | [data/](data/) | The 2026 car-fuel-efficiency and course-lead-scoring CSV datasets. |
 | [05-deployment/](05-deployment/) | Reference model, API, Dockerfile, inference client, and a separate locked environment. |
 | [pyproject.toml](pyproject.toml) / [uv.lock](uv.lock) | Notebook dependencies and their resolved versions. |
