@@ -18,7 +18,7 @@ calculations retain full precision unless the assignment requires rounding.
 | Q2: Random forest baseline | `1.837` | Validation RMSE: `1.839383` (`1.8394` at four decimals); constant-mean baseline: `2.9600`. | `1.837` is the closest numerical option under the online submission rule. |
 | Q3: Number of trees | `150` | Current environment: 100 and 150 trees both round to `1.768`. Archived reference run: 100 gives `1.769`, 150 gives `1.768`. | `150` is the unique minimum at three decimals in the archived reference environment. |
 | Q4: Tree depth | `10` | Mean validation RMSE by depth: 10 → `1.754133`; 15 → `1.783670`; 20 → `1.787846`; 25 → `1.786675`. | Depth 10 has the lowest mean over the four forest sizes. |
-| Q5: Feature importance | `vehicle_weight` | Candidate importances: weight `0.203067`, horsepower `0.078468`, displacement `0.061152`, acceleration `0.055342`. | Weight ranks first among the four candidates; `model_year` ranks first overall. |
+| Q5: Feature importance | `vehicle_weight` | Candidate importances: weight `0.203067`, horsepower `0.078468`, displacement `0.061152`, acceleration `0.055342`. | Weight ranks first among the four candidates; `model_year` ranks first overall. The candidate ranking is the same in the [archived reference-environment run](../evidence/homework_06/q5_reference_replay.md). |
 | Q6: XGBoost learning rate | `0.1` | Round-100 validation RMSE: `1.724810` at eta 0.1 vs `1.826458` at eta 0.3. Minimum RMSE: `1.712171` at round 40 vs `1.732048` at round 11. | Both the final-round and minimum-RMSE comparisons favor eta 0.1. |
 
 ### Q3: environment-sensitive ranking
@@ -110,13 +110,15 @@ replayed with that version. The lockfile resolves dependencies for supported
 Python versions, so using a different interpreter may select different versions
 and change results. The setup command alone does not guarantee the same
 numerical results on every interpreter or platform. The notebook prints its
-actual interpreter and library versions.
+actual Python and library versions.
 
 The completed verification confirmed valid notebook JSON and structure, all
 31 cell IDs and their order preserved, execution counts 1–12, zero error outputs,
 and no changes to the source dataset. Execution timestamps were refreshed.
-The Q3 diagnostic script was preserved for reproduction, not rerun in the final
-verification. This documentation update did not rerun model training.
+The Q3 and Q5 replay scripts are preserved for reproduction; run with their
+documented commands, they reproduce the archived reference outputs. The notebook
+was executed again from a fresh kernel after its setup cell stopped printing the
+local interpreter path, and every result was unchanged.
 
 ## Prepare the repository for delivery
 
@@ -132,7 +134,8 @@ After reviewing, stage the delivery files explicitly:
 ```bash
 git add README.md pyproject.toml uv.lock homework_06.ipynb \
   docs/homework_06_submission.md docs/homework_06_learning_in_public.md \
-  evidence/homework_06/reference_replay.md evidence/homework_06/q3_replay.py
+  evidence/homework_06/reference_replay.md evidence/homework_06/q3_replay.py \
+  evidence/homework_06/q5_reference_replay.md evidence/homework_06/q5_replay.py
 git diff --cached --check
 git diff --cached --stat
 ```

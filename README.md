@@ -21,7 +21,7 @@ Two datasets anchor the work: car fuel efficiency for regression and course lead
 | 03 | Machine Learning for Classification | Completed locally | [Notebook](homework_03.ipynb): feature analysis, logistic regression, and regularization. | 5 Oct 2026 |
 | 04 | Evaluation Metrics for Classification | Completed locally | [Notebook](homework_04.ipynb): assignment answers, threshold analysis, and cross-validation. | 12 Oct 2026 |
 | 05 | Deploying Machine Learning Models | Verified locally | [Deployment files](05-deployment/): direct inference, API requests, Docker build, and container health/inference checks. | 19 Oct 2026 |
-| 06 | Decision Trees and Ensemble Learning | Completed locally | [Notebook](homework_06.ipynb), [submission guide](docs/homework_06_submission.md), and [Q3 reference evidence](evidence/homework_06/reference_replay.md). Official submission remains unconfirmed. | 26 Oct 2026 |
+| 06 | Decision Trees and Ensemble Learning | Completed locally | [Notebook](homework_06.ipynb), [submission guide](docs/homework_06_submission.md), [Q3 reference evidence](evidence/homework_06/reference_replay.md), and [Q5 reference evidence](evidence/homework_06/q5_reference_replay.md). Official submission remains unconfirmed. | 26 Oct 2026 |
 | 08 | Neural Networks and Deep Learning | Pending | Implement the homework; no solution files found in this repository. | 23 Nov 2026 |
 | 09 | Serverless Deep Learning | Pending | Implement the homework; no solution files found in this repository. | 30 Nov 2026 |
 | 10 | Kubernetes and TensorFlow Serving | Pending | Implement the homework; no solution files found in this repository. | 7 Dec 2026 |
@@ -97,6 +97,7 @@ A [Learning in Public draft](docs/homework_06_learning_in_public.md) is ready fo
 | [Homework 6 submission guide](docs/homework_06_submission.md) | Final answers, evidence, reproduction instructions, delivery checklist, and submission record. |
 | [Homework 6 public-post draft](docs/homework_06_learning_in_public.md) | English Learning in Public draft with publication instructions. |
 | [Homework 6 reference evidence](evidence/homework_06/reference_replay.md) | Archived Q3 output and a companion script for isolated reproduction. |
+| [Homework 6 Q5 reference evidence](evidence/homework_06/q5_reference_replay.md) | Archived Q5 output from the course reference versions and a companion script for isolated reproduction. |
 | [data/](data/) | The 2026 car-fuel-efficiency and course-lead-scoring CSV datasets. |
 | [05-deployment/](05-deployment/) | Reference model, API, Dockerfile, inference client, and a separate locked environment. |
 | [pyproject.toml](pyproject.toml) / [uv.lock](uv.lock) | Notebook dependencies and their resolved versions. |
